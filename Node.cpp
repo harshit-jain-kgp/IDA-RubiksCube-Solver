@@ -1,5 +1,9 @@
 #include "Node.h"
 
+Node::Node() {
+	
+}
+
 Node::Node(Rubikscube state){
 	this->state=state;
 	parent=nullptr;
@@ -22,12 +26,12 @@ Node Node::getChild(int child){
 	int excl1=-1,excl2=-1;
 
 	switch(action){
-		case  1: case  2: case  3: excl1 = 0; excl2 = 0; break;
-		case  4: case  5: case  6: excl1 = 0; excl2 = 1; break;
-		case  7: case  8: case  9: excl1 = 2; excl2 = 2; break;
-		case 10: case 11: case 12: excl1 = 2; excl2 = 3; break;
-		case 13: case 14: case 15: excl1 = 4; excl2 = 4; break;
-		case 16: case 17: case 18: excl1 = 4; excl2 = 5; break;
+		case  1: case  2: case  3: excl1 = 0; excl2 = 0; break;//left
+		case  4: case  5: case  6: excl1 = 0; excl2 = 1; break;//right
+		case  7: case  8: case  9: excl1 = 2; excl2 = 2; break;//top
+		case 10: case 11: case 12: excl1 = 2; excl2 = 3; break;//bottom
+		case 13: case 14: case 15: excl1 = 4; excl2 = 4; break;//front
+		case 16: case 17: case 18: excl1 = 4; excl2 = 5; break;//back
 	}
 
 	int i,j;
@@ -58,11 +62,14 @@ int Node::numberOfChildren(){
 		case 13: case 14: case 15: return 15;
 		case 16: case 17: case 18: return 12;
 	}
+
+	return 0;
 }
 
 std::vector<int> Node::extractSolution(){
 	std::vector<int> path;
-	Node* tmp{};
+	
+	Node *tmp = this;
 
 	while(tmp!=NULL){
 		path.push_back(tmp->action);

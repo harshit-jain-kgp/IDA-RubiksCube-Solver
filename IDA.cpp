@@ -9,13 +9,12 @@ using namespace std;
 
 database db;
 
-
-//iterative dfs
-Solution IDdfs(Node node, int limit) {
+//iterative dfs 	//cst is cost of path
+Solution IDdfs(Node node, int cst) {
     int gcost = node.cost;
     int hcost = db.heuristic(node.state);
 
-    if (gcost + hcost > limit) {
+    if (gcost + hcost > cst) {
         Solution sol;
         sol.cost = gcost + hcost;
         return sol;
@@ -28,46 +27,46 @@ Solution IDdfs(Node node, int limit) {
         return sol;
     }
 
-    int newlimit = INT_MAX;
+    int newcst = INT_MAX;
     int number_children = node.numberOfChildren();
-    int i;
-    for (i = 0; i < number_children; i++) {
+    
+    for (int i = 0; i < number_children; i++) {
         Node node1 = node.getChild(i);
-        Solution sol = IDdfs(node1, limit);
+        Solution sol = IDdfs(node1, cst);
         if (! sol.path.empty()) 
             return sol;
 
-        newlimit = min(sol.cost, newlimit);
+        newcst = min(sol.cost, newcst);
     }
 
     Solution sol;
 
-    sol.cost = newlimit;
+    sol.cost = newcst;
 
     return sol;
     
-};
+}
 
 
 //main part of algo
-//takes problem to be solved return Optimal solution
-Solution IDAstar(Rubikscube problem, database pdb) {
+//takes cube to be solved return Optimal solution
+Solution IDAstar(Rubikscube cube, database pdb) {
     db = pdb;
-    Node node(problem);
-    int limit = db.heuristic(node.state);
+    Node node(cube);
+    int cst = db.heuristic(node.state);
 
-    while (limit < INT_MAX) {
-        Solution sol = IDdfs(node, limit);
+    while (cst < INT_MAX) {
+        Solution sol = IDdfs(node, cst);
         if  (! sol.path.empty()) 
             return sol;
-        limit  = sol.cost;
+        cst  = sol.cost;
     }
 
     Solution fail;
     fail.cost = INT_MAX;
 
     return fail;
-};
+}
 
 
 void print_solution(Solution solution) {

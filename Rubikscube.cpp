@@ -1,5 +1,10 @@
 #include "Rubikscube.h"
 
+Rubikscube::Rubikscube(){
+	for(int i=0;i<20;i++)
+        setCubie(i,0);
+}
+
 void Rubikscube::setCubie(int i,char val){
 	i%=20;
 	if(i<8)

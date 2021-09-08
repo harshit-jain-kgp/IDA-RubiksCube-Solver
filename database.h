@@ -30,13 +30,13 @@ class database{
         Rubikscube unrankCornersP(int);     //Corner Positions 
         Rubikscube unrankCornersO(int);     //Corner Orientations
 
-        //Methods to rank permutation of edges cubies in edges1
+        //Methods to rank permutation of edges cubies
         int rankE(int,Rubikscube);
         int rankEdgesP(int,Rubikscube);
         void auxiliaryRankEdgesP(int *,int *,int *);
         int rankEdgesO(int,Rubikscube);
 
-        //Methods to unrank permutation of edges cubies in edges1
+        //Methods to unrank permutation of edges cubies
         Rubikscube unrankE(int,int);
         Rubikscube unrankEdgesP(int,int);          //Edge Positions 
         Rubikscube unrankEdgesAux(int,int,Rubikscube);  //Auxiliary method

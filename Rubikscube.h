@@ -14,6 +14,7 @@ class Rubikscube{
 		char mid[4];//4 movable in mid
 
 	public:
+        Rubikscube();
 		void reset();
 		void print();
         void random();

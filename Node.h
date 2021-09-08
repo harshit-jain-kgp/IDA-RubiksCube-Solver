@@ -5,7 +5,7 @@
 
 class Node{
 	public:
-		Node() {}
+		Node();
 		Node(Rubikscube);
 		Node(Rubikscube,Node *,int,int);
 		Node *parent;

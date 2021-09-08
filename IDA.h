@@ -2,7 +2,6 @@
 #include "database.h"
 
 
-
 typedef struct Solution Solution;
 
 struct Solution {
@@ -16,5 +15,3 @@ extern Solution IDdfs(Node,int);
 extern Solution IDAstar(Rubikscube,database);
 
 extern void print_solution(Solution);
-
-
