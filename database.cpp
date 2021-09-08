@@ -6,7 +6,6 @@
 
 using namespace std;
 
-//g++ -o database_generator generate_database.cpp database.cpp Rubikscube.cpp Node.cpp IDA.cpp
 
 void swap(int *x, int *y) {
     int tmp = *x;
